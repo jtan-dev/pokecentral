@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  status: MyString
+  tax: 1.5
+  total: 1.5
   customer: one
 
 two:
+  status: MyString
+  tax: 1.5
+  total: 1.5
   customer: two
