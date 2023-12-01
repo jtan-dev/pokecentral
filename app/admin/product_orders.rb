@@ -1,16 +1,16 @@
-ActiveAdmin.register Province do
+ActiveAdmin.register ProductOrder do
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :code, :full_name, :tax_percentage
+  permit_params :quantity, :subtotal, :order_id, :product_id
   #
   # or
   #
   # permit_params do
-  #   permitted = [:code, :full_name, :tax_percentage]
+  #   permitted = [:quantity, :subtotal, :order_id, :product_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
