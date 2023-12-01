@@ -4,8 +4,16 @@ one:
   email: MyString
   username: MyString
   password: MyString
+  street_address: MyString
+  city: MyString
+  postal_code: MyString
+  province: one
 
 two:
   email: MyString
   username: MyString
   password: MyString
+  street_address: MyString
+  city: MyString
+  postal_code: MyString
+  province: two
