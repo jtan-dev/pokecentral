@@ -1,0 +1,2 @@
+class TemplateWebsiteController < ApplicationController
+end
