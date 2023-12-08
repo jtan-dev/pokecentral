@@ -54,7 +54,7 @@ gameknight_data.each do |product|
   sleep(1)
 end
 
-url = URI("https://api.pokemontcg.io/v2/cards?q=set.id:base1")
+url = URI("https://api.pokemontcg.io/v2/cards?q=set.id:base1%20OR%20set.id:base4")
 response = Net::HTTP.get(url)
 json_data = JSON.parse(response)
 
