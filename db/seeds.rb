@@ -18,60 +18,60 @@ Category.delete_all
 Customer.delete_all
 Province.delete_all
 
-# filename = Rails.root.join("db/gameknight.csv")
+filename = Rails.root.join("db/gameknight.csv")
 
-# csv_data= File.read(filename)
+csv_data= File.read(filename)
 
-# gameknight_data = CSV.parse(csv_data, headers: true, encoding: "utf-8")
+gameknight_data = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
-# cards_category = Category.create(
-#   name: "Cards"
-# )
+cards_category = Category.create(
+  name: "Cards"
+)
 
-# packs_category = Category.create(
-#   name: "Card Packs"
-# )
+packs_category = Category.create(
+  name: "Card Packs"
+)
 
-# binders_category = Category.create(
-#   name: "Binders"
-# )
+binders_category = Category.create(
+  name: "Binders"
+)
 
-# sleeves_category = Category.create(
-#   name: "Card Sleeves"
-# )
+sleeves_category = Category.create(
+  name: "Card Sleeves"
+)
 
-# gameknight_data.each do |product|
-#   pack_product = packs_category.products.create(
-#     name: product["name"],
-#     description: product["description"],
-#     price: product["price"],
-#     stock: Faker::Number.between(from: 0, to: 200)
-#   )
+gameknight_data.each do |product|
+  pack_product = packs_category.products.create(
+    name: product["name"],
+    description: product["description"],
+    price: product["price"],
+    stock: Faker::Number.between(from: 0, to: 200)
+  )
 
-#   download_image = URI.open("https:" + product["image-src"])
+  download_image = URI.open("https:" + product["image-src"])
 
-#   pack_product.image.attach(io:download_image,filename: "m-#{[product["name"],Faker::Number.number(digits: 6)].join('-')}.jpg")
-#   sleep(1)
-# end
+  pack_product.image.attach(io:download_image,filename: "m-#{[product["name"],Faker::Number.number(digits: 6)].join('-')}.jpg")
+  sleep(1)
+end
 
-# url = URI("https://api.pokemontcg.io/v2/cards?q=set.id:base1")
-# response = Net::HTTP.get(url)
-# json_data = JSON.parse(response)
+url = URI("https://api.pokemontcg.io/v2/cards?q=set.id:base1")
+response = Net::HTTP.get(url)
+json_data = JSON.parse(response)
 
-# json_data["data"].each do |card|
-#   if card["supertype"] == "Pokémon"
-#     card_product = cards_category.products.create(
-#       name: "#{card["name"]} - #{card["set"]["ptcgoCode"]} #{card["number"]}",
-#       description: card["flavorText"],
-#       price: card["cardmarket"]["prices"]["averageSellPrice"],
-#       stock: Faker::Number.between(from: 0, to: 200)
-#     )
+json_data["data"].each do |card|
+  if card["supertype"] == "Pokémon"
+    card_product = cards_category.products.create(
+      name: "#{card["name"]} - #{card["set"]["ptcgoCode"]} #{card["number"]}",
+      description: card["flavorText"],
+      price: card["cardmarket"]["prices"]["averageSellPrice"],
+      stock: Faker::Number.between(from: 0, to: 200)
+    )
 
-#     download_image = URI.open(card["images"]["small"])
-#     card_product.image.attach(io:download_image,filename: "m-#{[card["name"],card["set"]["ptcgoCode"],card["number"],Faker::Number.number(digits: 6)].join('-')}.jpg")
-#     sleep(1)
-#   end
-# end
+    download_image = URI.open(card["images"]["small"])
+    card_product.image.attach(io:download_image,filename: "m-#{[card["name"],card["set"]["ptcgoCode"],card["number"],Faker::Number.number(digits: 6)].join('-')}.jpg")
+    sleep(1)
+  end
+end
 
 Province.create(
   code: "AB",
