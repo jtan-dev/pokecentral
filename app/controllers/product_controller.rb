@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
     def index
-        @products = Product.all
+        @products = Product.page(params[:page]).per(15)
     end
 
     def show
@@ -8,7 +8,7 @@ class ProductController < ApplicationController
         @comments = @product.comments
     end
 
-    def search 
+    def search
         wildcard_search = "%#{params[:q]}%"
         @products = Product.where("name LIKE ?", "%#{params[:q]}%")
     end

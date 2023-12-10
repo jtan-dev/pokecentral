@@ -47,57 +47,63 @@
   <p>This is a sample view rendered using Ruby on Rails!</p>
 </figure>
 <div class="container">
-  <div class="row align-items-start">
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-       <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-  </div>
   <div class="row align-items-center">
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-  </div>
-  <div class="row align-items-end">
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-        <span class="border border-4">One of three columns</span>
-    </div>
-    <div class="col">
-      <span class="border border-4">One of three columns</span>
-    </div>
+    <% @products.each do |product|%>
+      <div class="col-md-4">
+        <div class="container text-center">
+          <%= link_to product_path(product) do %>
+            <% if product.image.present? %>
+              <div class="card-image">
+                <figure class="image">
+                  <%= image_tag product.image.variant(resize_to_limit:[250,250]) %>
+                </figure>
+              </div>
+            <%end %>
+            <h4><%= product.name %></h4>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <footer>
-  <nav aria-label="...">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <span class="page-link">Previous</span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active" aria-current="page">
-      <span class="page-link">2</span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <% if @products.prev_page %>
+        <li class="page-item">
+          <%= link_to "Previous", request.params.merge(page: @products.prev_page), class: "page-link" %>
+        </li>
+      <% else %>
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+      <% end %>
+      <% @products.total_pages.times do |i| %>
+        <% if @products.current_page == i + 1 %>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#"><%= i + 1 %></a>
+          </li>
+        <% else %>
+          <li class="page-item">
+            <%= link_to i + 1, request.params.merge(page: i + 1), class: "page-link" %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if @products.next_page %>
+        <li class="page-item">
+          <%= link_to "Next", request.params.merge(page: @products.next_page), class: "page-link" %>
+        </li>
+      <% else %>
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+        </li>
+      <% end %>
+      <li class="page-item">
+        <%= link_to "Last", request.params.merge(page: @products.total_pages), class: "page-link" %>
+      </li>
+    </ul>
+  </nav>
 </footer>
 
 </body>
