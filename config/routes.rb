@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'template_website#index'
+  root 'product#index'
 end
