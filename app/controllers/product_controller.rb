@@ -5,11 +5,10 @@ class ProductController < ApplicationController
 
     def show
         @product = Product.find(params[:id])
-        @comments = @product.comments
     end
 
     def search
-        wildcard_search = "%#{params[:q]}%"
-        @products = Product.where("name LIKE ?", "%#{params[:q]}%")
+        wildcard_search = "%#{params[:keywords]}%"
+        @products = Product.where("name LIKE ?", wildcard_search).page(params[:page]).per(15)
     end
 end
