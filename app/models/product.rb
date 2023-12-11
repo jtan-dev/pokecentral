@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   belongs_to :category
 
   validates :name, :price, :description, presence: true
-  validates :price, numericality: { is_numeric: true, greater_than: 0 }
+  validates :price, numericality: { is_numeric: true, greater_than_or_equal_to: 0 }
   validates :name, uniqueness: true
   validates :stock, numericality: { is_numeric: true, greater_than_or_equal_to: 0 }
 

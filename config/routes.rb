@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :category
+  resources :categories
 
   get ':title', to: 'contact_about_pages#show', as: 'custom_contact_about_page'
 end

@@ -1,19 +1,16 @@
-<p class="mb-5">
-  Products found when search for: <%= params[:q] %>
-</p>
-<div class="row">
-  <% if @products.empty? %>
-    <strong>No results found.</strong>
-  <% else %>
-    <div class="container">
-      <div class="row align-items-center">
-        <%= render partial: 'product/product',
-              collection: @products,
-              locals: { show_link: true } %>
-      </div>
-    </div>
-  <% end %>
+
+<figure class="text-center">
+  <h1><%= @category.name %></h1>
+  <p><%= "#{@category.products.count} #{@category.name}"%></p>
+</figure>
+<div class="container">
+  <div class="row align-items-center">
+          <%= render partial: 'product/product',
+             collection: @products,
+             locals: { show_link: true } %>
+  </div>
 </div>
+
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">
