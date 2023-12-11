@@ -1,0 +1,15 @@
+<div class="container">
+  <details>
+    <summary>Shopping Cart</summary>
+    <% if cart.empty? %>
+      <p>Your cart is empty</p>
+    <% else %>
+      <ul>
+        <% cart.each do |product| %>
+          <li><%= product.name %></li>
+          <p><%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: product.id} %>
+        <% end %>
+      </ul>
+    <% end %>
+  </details>
+</div>
