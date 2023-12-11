@@ -4,4 +4,5 @@ class Order < ApplicationRecord
   belongs_to :customer
 
   validates :status, :tax, :total, presence: true
+  validates :tax, numericality: { is_numeric: true, greater_than_or_equal_to: 0 }
 end
