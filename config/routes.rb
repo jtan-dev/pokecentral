@@ -14,4 +14,8 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  resources :categories
+
+  get ':title', to: 'contact_about_pages#show', as: 'custom_contact_about_page'
 end

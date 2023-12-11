@@ -159,4 +159,21 @@ fake_customer = mb_province.customers.create(
   postal_code: "R2G7V2"
 )
 
+ContactAboutPage.create(
+  title: "About Us",
+  content: "Based in Winnipeg, MB, Poke Central is a small business that is focused on one thing,
+  helping our fellow Pokemon collectors catch them all! Currently we sell individual cards as well as box sets and collections.
+  With only 7 employees, we aim to provide an excellent customer experience by giving our customers reasonable prices.
+  Currently, we only serve customers based in Canada, but we hope to provide our products to all Pokemon collectors around
+  the world!"
+)
+
+ContactAboutPage.create(
+  title: "Contact Us",
+  content: "If you have any inquires or suggestions regarding our products or services, please contact us through the methods below:\n
+  Email: info@pokecentral.ca\n
+  Tel: (204) 555-5555\n
+  Address: 160 Princess Street"
+)
+
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

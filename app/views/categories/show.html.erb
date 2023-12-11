@@ -1,25 +1,16 @@
-<% if params[:category] %>
-  <h1 class="text-center mb-5 mt-2">
-    Products found when searching <%= params[:q] != "" ? "for: #{params[:q]}" : "" %> under <%= params[:category] == "" ? "All" : @category.name %>
-  </h1>
-<% else %>
-  <h1 class="text-center mb-5 mt-2">
-    <%= params[:filter].capitalize %> Products
-  </h1>
-<% end %>
-<div class="row">
-  <% if @products.empty? %>
-    <strong class="text-center">No results found.</strong>
-  <% else %>
-    <div class="container">
-      <div class="row align-items-center">
-        <%= render partial: 'product/product',
-              collection: @products,
-              locals: { show_link: true } %>
-      </div>
-    </div>
-  <% end %>
+
+<figure class="text-center">
+  <h1><%= @category.name %></h1>
+  <p><%= "#{@category.products.count} #{@category.name}"%></p>
+</figure>
+<div class="container">
+  <div class="row align-items-center">
+          <%= render partial: 'product/product',
+             collection: @products,
+             locals: { show_link: true } %>
+  </div>
 </div>
+
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">
