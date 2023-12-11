@@ -1,18 +1,6 @@
-<div class="container">
-  <details>
-    <summary>Shopping Cart</summary>
-    <% if @cart.empty? %>
-      <p>Your cart is empty</p>
-    <% else %>
-      <ul>
-        <% @cart.each do |product| %>
-          <li><%= product.name %></li>
-          <p><%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: product.id} %></p>
-        <% end %>
-      </ul>
-    <% end %>
-  </details>
-</div>
+<%= render partial: 'product/cart',
+      object: @cart,
+      locals: { show_link: true } %>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-4">
@@ -34,9 +22,9 @@
           <p class="card-text">$<%= @product.price %> - Stock: <%= @product.stock %></p>
           <p class="card-text"><%= @product.description %></p>
           <% if @cart.include?(@product) %>
-            <p><%= button_to 'Remove from cart', remove_from_cart_path(@product.id), method: :delete, params: { id: @product.id } %></p>
+            <p><%= button_to 'Remove from cart', remove_from_cart_path(@product.id), method: :delete, params: { id: @product.id } %>
           <% else%>
-            <p><%= button_to 'Add to cart', add_to_cart_path(@product.id), method: :post %></p>
+            <p><%= button_to 'Add to cart', add_to_cart_path(@product.id), method: :post %>
           <% end %>
         </div>
       </div>
