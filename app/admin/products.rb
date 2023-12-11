@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :description, :price, :stock, :category_id
+  permit_params :name, :description, :price, :stock, :category_id, :image, :created_at
   #
   # or
   #
@@ -15,12 +15,12 @@ ActiveAdmin.register Product do
   #   permitted
   # end
 
-
   form do |f|
     f.semantic_errors
     f.inputs
     f.inputs do
       f.input :image, as: :file
+      f.input :created_at
     end
     f.actions
   end

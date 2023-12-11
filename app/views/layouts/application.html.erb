@@ -34,6 +34,12 @@
                 <% end %>
               </ul>
             </li>
+            <li class="nav-item">
+              <%= link_to "New", search_product_index_path(filter: "new"), class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Updated", search_product_index_path(filter: "updated"), class: "nav-link active" %>
+            </li>
             <% @pages.each do |page|%>
               <li class="nav-item">
                 <%= link_to page.title, custom_contact_about_page_path(page.title), class: "nav-link active"%>
