@@ -27,9 +27,12 @@
                 Products
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="/">All</a>
+                </li>
                 <% @categories.each do |category|%>
                   <li>
-                    <%= link_to category.name, category_path(category)%>
+                    <%= link_to category.name, category_path(category), class: "dropdown-item"%>
                   </li>
                 <% end %>
               </ul>
