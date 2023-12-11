@@ -10,6 +10,12 @@
               </div>
             <%end %>
             <h4><%= product.name %></h4>
+            <p><%= number_to_currency(product.price) %></p>
+          <% end %>
+          <% if @cart.include?(product) %>
+            <p><%= button_to 'Remove from cart', remove_from_cart_path(product.id), method: :delete, params: { id: product.id } %></p>
+          <% else%>
+            <p><%= button_to 'Add to cart', add_to_cart_path(product.id), method: :post %></p>
           <% end %>
         </div>
       </div>
