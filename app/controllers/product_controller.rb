@@ -12,7 +12,10 @@ class ProductController < ApplicationController
 
         three_days_ago = Date.current - 3.days
 
-        if params[:category] != ""
+
+
+        if params[:category] && params[:category] != ""
+            @category = Category.find(params[:category])
             @products = Product.where("(name LIKE ? OR description LIKE ?) AND category_id = ?", wildcard_search, wildcard_search, params[:category]).page(params[:page]).per(15)
         elsif params[:category] == ""
             @products = Product.where("(name LIKE ? OR description LIKE ?)", wildcard_search, wildcard_search).page(params[:page]).per(15)

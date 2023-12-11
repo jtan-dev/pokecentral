@@ -1,9 +1,15 @@
-<p class="mb-5">
-  Products found when search for: <%= params[:q] %>
-</p>
+<% if params[:category] %>
+  <h1 class="text-center mb-5 mt-2">
+    Products found when searching <%= params[:q] != "" ? "for: #{params[:q]}" : "" %> under <%= params[:category] == "" ? "All" : @category.name %>
+  </h1>
+<% else %>
+  <h1 class="text-center mb-5 mt-2">
+    <%= params[:filter].capitalize %> Products
+  </h1>
+<% end %>
 <div class="row">
   <% if @products.empty? %>
-    <strong>No results found.</strong>
+    <strong class="text-center">No results found.</strong>
   <% else %>
     <div class="container">
       <div class="row align-items-center">
