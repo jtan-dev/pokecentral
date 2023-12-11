@@ -12,6 +12,7 @@
       <ul>
         <% @cart.each do |product| %>
           <li><%= product.name %></li>
+          <p><%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: product.id} %></p>
         <% end %>
       </ul>
     <% end %>

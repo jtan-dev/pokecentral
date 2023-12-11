@@ -7,6 +7,8 @@ gem 'bootstrap', '~> 5.0.0.beta1'
 
 gem 'faker'
 
+gem 'stripe'
+
 gem "devise"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
