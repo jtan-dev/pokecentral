@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   resources :categories
 
   get ':title', to: 'contact_about_pages#show', as: 'custom_contact_about_page'
+
+  get
 end

@@ -16,7 +16,13 @@
               <%= button_to 'Remove from cart', remove_from_cart_path(product["product"].id), method: :delete %>
             </li>
           <% end %>
-        <li><%= button_to 'Buy now', checkout_create_path, method: :post %></li>
+        <% if customer_signed_in? %>
+          <li><%= button_to 'Buy now', checkout_create_path, method: :post %></li>
+        <% else %>
+          <li>
+            <%= link_to "Sign in to buy now", new_customer_session_path%>
+          </li>
+        <% end %>
       </ul>
     <% end %>
   </details>
