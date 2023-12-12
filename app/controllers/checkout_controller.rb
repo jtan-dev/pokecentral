@@ -2,13 +2,13 @@ class CheckoutController < ApplicationController
     def create
         # @product = Product.find(params[:id])
 
-        products = []
+        @products = []
 
         params[:cart].each do |item|
-            products << Product.find(item)
+            @products << Product.find(item)
         end
 
-        if products.nil?
+        if @products.nil?
             redirect_to root_path
             return
         end
@@ -16,7 +16,7 @@ class CheckoutController < ApplicationController
 
         line_items = []
 
-        products.each do |product|
+        @products.each do |product|
             line_items << {
                 price_data: {
                     currency: 'cad',

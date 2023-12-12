@@ -5,7 +5,7 @@
             <% if product.image.present? %>
               <div class="card-image">
                 <figure class="image">
-                  <%= image_tag product.image.variant(resize_to_limit:[250,250]) %>
+                  <%= image_tag product.image.variant(resize_to_limit:[250,250]), alt: "Image of #{product.name}" %>
                 </figure>
               </div>
             <%end %>
@@ -13,9 +13,9 @@
             <p><%= number_to_currency(product.price) %></p>
           <% end %>
           <% if @cart.include?(product) %>
-            <p><%= button_to 'Remove from cart', remove_from_cart_path(product.id), method: :delete, params: { id: product.id } %></p>
+            <%= button_to 'Remove from cart', remove_from_cart_path(product.id), method: :delete, params: { id: product.id } %>
           <% else%>
-            <p><%= button_to 'Add to cart', add_to_cart_path(product.id), method: :post %></p>
+            <%= button_to 'Add to cart', add_to_cart_path(product.id), method: :post %>
           <% end %>
         </div>
       </div>

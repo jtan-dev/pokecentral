@@ -8,7 +8,7 @@
         <% cart.each do |product| %>
           <li><%= link_to product.name, product_path(product) %></li>
         <% end %>
-        <p><%= button_to 'Buy now', checkout_create_path, method: :post, params: {cart: cart} %>
+        <li><%= button_to 'Buy now', checkout_create_path, method: :post, params: {cart: cart} %></li>
       </ul>
     <% end %>
   </details>

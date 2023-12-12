@@ -24,7 +24,7 @@ class ProductController < ApplicationController
         session[:cart].delete(id)
         redirect_to root_path
     end
-    
+
     def load_cart
         @cart = Product.find(session[:cart])
     end
