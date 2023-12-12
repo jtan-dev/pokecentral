@@ -6,9 +6,17 @@
     <% else %>
       <ul>
         <% cart.each do |product| %>
-          <li><%= link_to product.name, product_path(product) %></li>
+          <li>
+            <%= form_tag(add_remove_quantity_path, method: 'post') do %>
+              <%= link_to product["product"].name, product_path(product["product"]) %>
+              <p>qty:</p><%= number_field_tag(:quantity, product["qty"])%>
+              <%= submit_tag("Change Quantity") %>
+              <%= hidden_field_tag(:product_id, product["product"].id)%>
+            <% end %>
+            <%= button_to 'Remove from cart', remove_from_cart_path(product["product"].id), method: :delete %>
+          </li>
         <% end %>
-        <li><%= button_to 'Buy now', checkout_create_path, method: :post, params: {cart: cart} %></li>
+        <li><%= button_to 'Buy now', checkout_create_path, method: :post %></li>
       </ul>
     <% end %>
   </details>

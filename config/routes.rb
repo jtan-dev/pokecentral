@@ -6,12 +6,14 @@ Rails.application.routes.draw do
 
   post 'product/add_to_cart/:id', to: 'product#add_to_cart', as: 'add_to_cart'
   delete 'product/remove_from_cart/:id', to: 'product#remove_from_cart', as: 'remove_from_cart'
+  post 'product/add_remove_quantity', to: 'product#add_remove_quantity', as: 'add_remove_quantity'
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
     get 'success', to: 'checkout#success', as: 'checkout_success'
   end
+
 
   # Defines the root path route ("/")
   # root "articles#index"

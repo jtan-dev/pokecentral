@@ -15,18 +15,35 @@ class ProductController < ApplicationController
 
     def add_to_cart
         id = params[:id].to_i
-        session[:cart] << id unless session[:cart].include?(id)
+        cart_items = {"id" => id, "qty" => 1}
+
+        if session[:cart].any?{ |i| i["id"] == id}
+            session[:cart][session[:cart].index {|i| i["id"] == id}]["qty"] += 1
+        else
+            session[:cart] << cart_items
+        end
         redirect_to root_path
     end
 
     def remove_from_cart
         id = params[:id].to_i
-        session[:cart].delete(id)
+        session[:cart].delete_at(session[:cart].index {|i| i["id"] == id})
+        redirect_to root_path
+    end
+
+    def add_remove_quantity
+        id = params[:product_id].to_i
+        new_quantity = params[:quantity].to_i
+        session[:cart][session[:cart].index {|i| i["id"] == id}]["qty"] = new_quantity
         redirect_to root_path
     end
 
     def load_cart
-        @cart = Product.find(session[:cart])
+        @cart = []
+        session[:cart].each do |item|
+            product = Product.find(item["id"])
+            @cart << {"product" => product, "qty" => item["qty"]}
+        end
     end
 
     def search

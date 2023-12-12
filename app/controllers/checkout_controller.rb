@@ -4,8 +4,9 @@ class CheckoutController < ApplicationController
 
         @products = []
 
-        params[:cart].each do |item|
-            @products << Product.find(item)
+        session[:cart].each do |item|
+            product = Product.find(item["id"].to_i)
+            @products << {"product" => product, "qty" => item["qty"]}
         end
 
         if @products.nil?
@@ -16,17 +17,17 @@ class CheckoutController < ApplicationController
 
         line_items = []
 
-        @products.each do |product|
+        @products.each do |item|
             line_items << {
                 price_data: {
                     currency: 'cad',
                     product_data: {
-                        name: product.name,
-                        description: product.description
+                        name: item["product"].name,
+                        description: item["product"].description
                     },
-                    unit_amount: (product.price * 100).to_i
+                    unit_amount: (item["product"].price * 100).to_i
                 },
-                quantity: 1
+                quantity: item["qty"]
             }
         end
 
