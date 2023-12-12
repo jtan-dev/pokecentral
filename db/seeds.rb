@@ -153,7 +153,6 @@ Province.create(
 
 fake_customer = mb_province.customers.create(
   email: "fake@email.com",
-  username: "user101",
   street_address: "127 Princess Street",
   city: "Winnipeg",
   postal_code: "R2G7V2"

@@ -14,3 +14,16 @@
  *= require_self
  */
  @import "bootstrap";
+
+ .link-button {
+  background: none;
+  border: none;
+  border-radius: 0%;
+  padding: 0.25rem 1rem;
+  box-shadow: none;
+  //font: inherit;
+  cursor: pointer;
+  text-decoration: underline; // You can customize this based on your preference
+  color: #38678b; // You can customize the color
+  text-shadow: none;
+}
