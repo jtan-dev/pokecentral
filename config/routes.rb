@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post 'create', to: 'checkout#create', as: 'checkout_create'
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
     get 'success', to: 'checkout#success', as: 'checkout_success'
+    post 'review', to: 'checkout#review', as: 'checkout_review'
   end
 
 
@@ -27,6 +28,4 @@ Rails.application.routes.draw do
   resources :categories
 
   get ':title', to: 'contact_about_pages#show', as: 'custom_contact_about_page'
-
-  get
 end

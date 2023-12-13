@@ -76,79 +76,105 @@ end
 Province.create(
   code: "AB",
   full_name: "Alberta",
-  tax_percentage: 0.05
+  pst: 0,
+  gst: 0.05,
+  hst: 0
 )
 
 Province.create(
   code: "BC",
   full_name: "British Columbia",
-  tax_percentage: 0.12
+  pst: 0.07,
+  gst: 0.05,
+  hst: 0
 )
 
 mb_province = Province.create(
   code: "MB",
   full_name: "Manitoba",
-  tax_percentage: 0.12
+  pst: 0.07,
+  gst: 0.05,
+  hst: 0
 )
 
 Province.create(
   code: "NB",
   full_name: "New Brunswick",
-  tax_percentage: 0.15
+  pst: 0,
+  gst: 0,
+  hst: 0.15
 )
 
 Province.create(
   code: "NL",
   full_name: "Newfoundland and Labrador",
-  tax_percentage: 0.15
+  pst: 0,
+  gst: 0,
+  hst: 0.15
 )
 
 Province.create(
   code: "NT",
   full_name: "Northwest Territories",
-  tax_percentage: 0.05
+  pst: 0,
+  gst: 0.05,
+  hst: 0
 )
 
 Province.create(
   code: "NS",
   full_name: "Nova Scotia",
-  tax_percentage: 0.15
+  pst: 0,
+  gst: 0,
+  hst: 0.15
 )
 
 Province.create(
   code: "NU",
   full_name: "Nunavut",
-  tax_percentage: 0.05
+  pst: 0,
+  gst: 0.05,
+  hst: 0
 )
 
 Province.create(
   code: "ON",
   full_name: "Ontario",
-  tax_percentage: 0.13
+  pst: 0,
+  gst: 0,
+  hst: 0.13
 )
 
 Province.create(
   code: "PEI",
   full_name: "Prince Edward Island",
-  tax_percentage: 0.15
+  pst: 0,
+  gst: 0,
+  hst: 0.15
 )
 
 Province.create(
   code: "QC",
   full_name: "Quebec",
-  tax_percentage: 0.14975
+  pst: 0.09975,
+  gst: 0.05,
+  hst: 0
 )
 
 Province.create(
   code: "SK",
   full_name: "Saskatchewan",
-  tax_percentage: 0.11
+  pst: 0.06,
+  gst: 0/05,
+  hst: 0
 )
 
 Province.create(
   code: "YT",
   full_name: "Yukon",
-  tax_percentage: 0.05
+  pst: 0,
+  gst: 0.05,
+  hst: 0
 )
 
 fake_customer = mb_province.customers.create(

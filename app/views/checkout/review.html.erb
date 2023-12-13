@@ -1,0 +1,77 @@
+<% if customer_signed_in? %>
+  <div class="container mt-5">
+    <h1>Review</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Address Details</h5>
+            <%= form_for(@customer, url: checkout_create_path, html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: @customer %>
+              <div class="form-group">
+                <div class="field">
+                  <%= f.label :province_id %><br />
+                  <%= f.collection_select :province_id, Province.all, :id, :full_name, prompt: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :street_address %><br />
+                  <%= f.text_field :street_address, autocomplete: "address-line1" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :postal_code %><br />
+                  <%= f.text_field :postal_code, autocomplete: "postal-code" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :city %><br />
+                  <%= f.text_field :city, autocomplete: "address-level2" %>
+                </div>
+
+                <%= hidden_field_tag(:id, @customer.id)%>
+
+                <div class="actions">
+                  <%= f.submit "Proceed to Payment" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Cart Details</h5>
+            <% @cart.each do |item|%>
+              <% if item["product"].image.present? %>
+                <div class="card-image">
+                  <figure class="image">
+                    <%= image_tag item["product"].image.variant(resize_to_limit:[50,50]), alt: "Image of #{item["product"].name}" %>
+                  </figure>
+                </div>
+              <%end %>
+              <p class="card-text"><%= item["product"].name %> - <%= item["product"].price %></p>
+              <p class="card-text">Quantity: <%= item["qty"] %></p>
+              <p class="card-text">Quantity: <%= item["product_subtotal"] %></p>
+            <% end %>
+            <hr class="my-4">
+            <h6 class="card-title">Pricing</h6>
+            <p class="card-text" style="text-align: right">PST: $<%= (@cart_subtotal * @customer.province.pst).truncate(2)%></p>
+            <p class="card-text" style="text-align: right">GST: $<%= (@cart_subtotal * @customer.province.gst).truncate(2) %></p>
+            <p class="card-text" style="text-align: right">HST: $<%= (@cart_subtotal * @customer.province.hst).truncate(2) %></p>
+            <p class="card-text" style="text-align: right">Subtotal: $<%= @cart_subtotal %></p>
+            <p class="card-text" style="text-align: right">Total: $<%= (@cart_subtotal +
+                                                                    (@cart_subtotal * @customer.province.pst) +
+                                                                    (@cart_subtotal * @customer.province.gst) +
+                                                                    (@cart_subtotal * @customer.province.hst)).truncate(2) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container mt-5">
+    <h1>You must be signed in to view this page.</h1>
+  </div>
+<% end %>

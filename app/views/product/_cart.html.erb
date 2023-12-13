@@ -17,7 +17,7 @@
             </li>
           <% end %>
         <% if customer_signed_in? %>
-          <li><%= button_to 'Buy now', checkout_create_path, method: :post %></li>
+          <li><%= button_to 'Buy now', checkout_review_path, method: :post %></li>
         <% else %>
           <li>
             <%= link_to "Sign in to buy now", new_customer_session_path%>
