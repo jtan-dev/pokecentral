@@ -24,10 +24,10 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Products
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown-1">
                 <li>
                   <a class="dropdown-item" href="/">All</a>
                 </li>
@@ -52,10 +52,10 @@
             <li class="nav-item">
             <% if customer_signed_in? %>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Account
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown-2">
                   <li>
                     <%= link_to "Edit Account", edit_customer_registration_path, class:"dropdown-item"%>
                   </li>
@@ -67,7 +67,6 @@
             <% else %>
               <%= link_to "Sign in", new_customer_session_path, class:"nav-link active"%>
             <% end %>
-            </li>
           </ul>
               <%= form_with(url: search_product_index_path, method: :get, local: true) do %>
               <%= text_field_tag(:q, nil, class: "input", placeholder: 'Search for Products') %>
